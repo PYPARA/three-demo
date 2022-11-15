@@ -10,9 +10,16 @@ function createCamera() {
 
   // move the camera back so we can view the scene
   camera.position.set(0, 0, 10);
-  
+
   // camera.rotation.set(0, 0, MathUtils.degToRad(90));
-  camera.rotation.set(0, 0, Math.PI / 2);
+  // camera.rotation.set(0, 0, Math.PI / 2);
+
+  console.log(camera);
+
+  camera.setCameraLight = (light) => {
+    camera.add(light);
+  };
+
   return camera;
 }
 

@@ -12,6 +12,7 @@
     "@esotericsoftware/spine-core": "^4.2.9",
     "@esotericsoftware/spine-threejs": "^4.2.9",
     "@types/three": "^0.140.0",
+    "gsap": "^3.11.3",
     "three": "^0.140.0",
     "vue": "^3.2.41"
   },

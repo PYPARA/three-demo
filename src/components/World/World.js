@@ -3,6 +3,8 @@ import { createCube } from './components/cube.js';
 import { createSphere } from './components/sphere';
 import { createScene } from './components/scene.js';
 import { createLights } from './components/lights.js';
+
+import { createControls } from './systems/controls.js';
 import { createRenderer } from './systems/renderer.js';
 import { Resizer } from './systems/Resizer.js';
 import { Loop } from './systems/Loop.js';
@@ -22,17 +24,22 @@ class World {
     renderer = createRenderer();
     loop = new Loop(camera, scene, renderer);
 
+    const controls = createControls(camera, renderer.domElement);
+
     renderer.domElement.setAttribute('id', 'webgl-canvas');
     container.append(renderer.domElement);
 
     const cube = createCube();
     const sphere = createSphere();
 
-    const light = createLights();
+    const { ambientLight, mainLight } = createLights();
 
-    loop.updatables.push(cube);
+    // loop.updatables.push(cube);
+    loop.updatables.push(controls);
+
+    camera.setCameraLight(mainLight);
     
-    scene.add(cube, sphere, light);
+    scene.add(cube, sphere, camera, ambientLight);
 
     const resizer = new Resizer(container, camera, renderer);
 
